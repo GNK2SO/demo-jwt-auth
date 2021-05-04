@@ -11,6 +11,19 @@ I did this project to start my studies in TDD, I started with a simple example o
  - Save User
  - Get User
 
+## How run?
+
+run the command
+
+```sh
+./mvnw spring-boot:run
+```
+
+For the tests run the command:
+
+```sh
+./mvnw test
+
  ## Documentation
  
  I used the swagger to document the api's routes, http methods, parameters and responses.
