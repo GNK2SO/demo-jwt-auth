@@ -23,6 +23,7 @@ For the tests run the command:
 
 ```sh
 ./mvnw test
+```
 
  ## Documentation
  
