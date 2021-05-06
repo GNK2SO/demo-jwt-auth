@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
@@ -29,10 +30,11 @@ public class SwaggerConfig {
         .select()
         .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
         .build()
-        .consumes(new HashSet<String>(Arrays.asList("application/json")))
-        .produces(new HashSet<String>(Arrays.asList("application/json")))
+        .consumes(new HashSet<>(Arrays.asList("application/json")))
+        .produces(new HashSet<>(Arrays.asList("application/json")))
         .useDefaultResponseMessages(false)
-        .apiInfo(metaData());
+        .apiInfo(metaData())
+        .securitySchemes(Arrays.asList(apiKey()));
 
   }
 
@@ -44,6 +46,10 @@ public class SwaggerConfig {
         .license("Apache License Version 2.0")
         .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
         .build();
+  }
+
+  private ApiKey apiKey() {
+    return new ApiKey("JWT", "Authorization", "header");
   }
 
 }

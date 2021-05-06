@@ -22,6 +22,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 
 @RestController
 @RequestMapping("/users")
@@ -48,7 +49,10 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    @ApiOperation(value = "Get user details")
+    @ApiOperation(
+        value = "Get user details",
+        authorizations = { @Authorization(value = "JWT") }
+    )
     @ApiResponses({
         @ApiResponse(code = 200, message = "Ok"),
         @ApiResponse(code = 401, message = "Invalid/Expired token"),
